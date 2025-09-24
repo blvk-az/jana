@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Heart's Apology</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 25%, #fecfef 75%, #fda085 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: #8b0000;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .message {
+            font-size: 1.3rem;
+            color: #4a4a4a;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            background: rgba(255,255,255,0.8);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .love-button {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255,107,107,0.4);
+            animation: glow 2s ease-in-out infinite alternate;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        .love-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255,107,107,0.6);
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 4px 15px rgba(255,107,107,0.4); }
+            to { box-shadow: 0 4px 25px rgba(255,107,107,0.8); }
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff6b6b;
+            font-size: 20px;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .floating-heart {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .click-heart {
+            animation: rise 3s ease-out forwards;
+        }
+
+        .sparkle {
+            position: absolute;
+            color: #ffd700;
+            font-size: 16px;
+            pointer-events: none;
+            z-index: 5;
+            animation: sparkle 2s ease-out forwards;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) translateX(0px) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) translateX(50px) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(0) scale(0.5); opacity: 1; }
+            100% { transform: translateY(-200px) scale(1.2); opacity: 0; }
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1) rotate(180deg); opacity: 1; }
+            100% { transform: scale(0) rotate(360deg); opacity: 0; }
+        }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #8b0000;
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+            max-width: fit-content;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #8b0000; }
+        }
+
+        .music-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.9);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .music-controls button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .message {
+                font-size: 1.1rem;
+                padding: 1.5rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title typewriter">I'm Sorry, I Miss You, and I Love You</h1>
+        <div class="message">
+            <p>Since July 20, 2025, we haven't been together. I know I made mistakes, I did bad things, and I hurt you. But now I truly understand your value, how much you mean to me, and how deeply I love you. You are my everything, and I want to fix us.</p>
+        </div>
+        <button class="love-button" onclick="explodeLove()">Click to Feel My Love ❤️</button>
+    </div>
+
+    <div class="music-controls">
+        <button onclick="toggleMusic()">🎵 Play/Pause</button>
+        <button onclick="changeVolume()">🔊 Volume</button>
+    </div>
+
+    <audio id="backgroundMusic" loop>
+        <source src="https://www.soundjay.com/misc/sounds/romantic-music.mp3" type="audio/mpeg">
+        <!-- Fallback: we'll create a simple tone since we can't guarantee external audio -->
+    </audio>
+
+    <script>
+        // Create floating hearts continuously
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.className = 'heart floating-heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.parentNode.removeChild(heart);
+                }
+            }, 7000);
+        }
+
+        // Create hearts on click
+        function createClickHeart(x, y) {
+            const heart = document.createElement('div');
+            const heartTypes = ['❤️', '💕', '💖', '💗', '💘'];
+            heart.innerHTML = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+            heart.className = 'heart click-heart';
+            heart.style.left = x + 'px';
+            heart.style.top = y + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.parentNode.removeChild(heart);
+                }
+            }, 3000);
+        }
+
+        // Create sparkles
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.innerHTML = '✨';
+            sparkle.className = 'sparkle';
+            sparkle.style.left = x + Math.random() * 100 - 50 + 'px';
+            sparkle.style.top = y + Math.random() * 100 - 50 + 'px';
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => {
+                if (sparkle.parentNode) {
+                    sparkle.parentNode.removeChild(sparkle);
+                }
+            }, 2000);
+        }
+
+        // Explode with love button
+        function explodeLove() {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight;
+                    createClickHeart(x, y);
+                    createSparkle(x, y);
+                }, i * 100);
+            }
+        }
+
+        // Click anywhere to create hearts
+        document.addEventListener('click', function(e) {
+            // Don't create hearts when clicking buttons
+            if (e.target.tagName !== 'BUTTON') {
+                createClickHeart(e.clientX, e.clientY);
+            }
+        });
+
+        // Music controls
+        let musicPlaying = false;
+        let volume = 0.3;
+        const audio = document.getElementById('backgroundMusic');
+
+        function toggleMusic() {
+            if (musicPlaying) {
+                audio.pause();
+                musicPlaying = false;
+            } else {
+                // Create a simple romantic audio context since external audio might not work
+                createRomanticAmbience();
+                musicPlaying = true;
+            }
+        }
+
+        function changeVolume() {
+            volume = volume === 0.3 ? 0.1 : volume === 0.1 ? 0.5 : 0.3;
+            if (window.audioContext) {
+                window.gainNode.gain.value = volume;
+            }
+        }
+
+        // Create romantic ambient sounds
+        function createRomanticAmbience() {
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                const audioContext = new AudioContext();
+                window.audioContext = audioContext;
+
+                const gainNode = audioContext.createGain();
+                gainNode.gain.value = volume;
+                gainNode.connect(audioContext.destination);
+                window.gainNode = gainNode;
+
+                // Create gentle ambient tones
+                function playTone(frequency, duration, delay = 0) {
+                    setTimeout(() => {
+                        const oscillator = audioContext.createOscillator();
+                        const envelope = audioContext.createGain();
+                        
+                        oscillator.frequency.value = frequency;
+                        oscillator.type = 'sine';
+                        
+                        envelope.gain.setValueAtTime(0, audioContext.currentTime);
+                        envelope.gain.linearRampToValueAtTime(0.1, audioContext.currentTime + 0.1);
+                        envelope.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+                        
+                        oscillator.connect(envelope);
+                        envelope.connect(gainNode);
+                        
+                        oscillator.start(audioContext.currentTime);
+                        oscillator.stop(audioContext.currentTime + duration);
+                    }, delay);
+                }
+
+                // Play gentle romantic chord progression
+                const chords = [
+                    [261.63, 329.63, 392.00], // C major
+                    [293.66, 369.99, 440.00], // D minor
+                    [329.63, 415.30, 493.88], // E minor
+                    [349.23, 440.00, 523.25]  // F major
+                ];
+
+                function playChordProgression() {
+                    chords.forEach((chord, index) => {
+                        chord.forEach(frequency => {
+                            playTone(frequency, 2, index * 2000);
+                        });
+                    });
+                }
+
+                playChordProgression();
+                setInterval(playChordProgression, 8000);
+            } catch (e) {
+                console.log('Audio not supported, visual experience only');
+            }
+        }
+
+        // Start floating hearts
+        setInterval(createFloatingHeart, 1000);
+
+        // Initial burst of hearts
+        setTimeout(() => {
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createFloatingHeart, i * 200);
+            }
+        }, 2000);
+    </script>
+</body>
+</html>
